@@ -6,16 +6,16 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:01:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 15:07:55 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/08 17:24:26 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <string>
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 class Bureaucrat
 {
 private:
@@ -37,7 +37,6 @@ public:
 			virtual const char *what() const noexcept;
 			~GradeTooLowException() = default;
 	};
-
 	Bureaucrat();
 	Bureaucrat(const std::string& name, int grade); 
 	Bureaucrat(const Bureaucrat& other);
@@ -47,7 +46,8 @@ public:
 	~Bureaucrat();
 	int getGrade() const;
 	const std::string getName() const;
-	void signForm(Form& form);
+	void signForm(AForm& form);
+	void executeForm(const AForm& form);
 };
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& drone);

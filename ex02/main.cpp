@@ -6,43 +6,39 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:01:13 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 15:10:59 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/08 17:35:10 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main(void)
 {
-	Bureaucrat	Tim("Tim", 10);
-	Bureaucrat	drone;
-	Form		EvilLicense("License for Evil", 11, 11);
-
-	std::cout << EvilLicense << std::endl;
-	
-	std::cout << "Let's make some invalid forms" << std::endl;
-	
+	//Confirm abstract form:
+	//AForm test;
+	Bureaucrat drone;
+	ShrubberyCreationForm test;
+	std::cout << "We have made a Shrubbery form and a drone. Woo.\nThe drone shouldn't be able to execute this form because it hasn't been signed yet." << std::endl;
 	try
 	{
-		Form		ImpossibleForm("ImpossibleForm", 0, -1);
+		drone.executeForm(test);
 	}
-	catch(const Form::GradeTooHighException& e)
+	catch (const AForm::FormNotSignedException& e)
 	{
 		std::cout << e.what() << std::endl;
 	}
+	Bureaucrat SirRobin("Sir Robin", 145);
+	std::cout << SirRobin.getName() << " should be able to sign it, but not execute it since his grade is "	<< SirRobin.getGrade() << std::endl;
+	SirRobin.signForm(test);
 	try
 	{
-		Form		EasyForm("EasyForm", 150, 151);
+		SirRobin.executeForm(test);
 	}
-	catch(const Form::GradeTooLowException& e)
+	catch (const AForm::GradeTooLowException& e)
 	{
 		std::cout << e.what() << std::endl;
 	}
-	std::cout << std::endl << "Time to fail at signing a form" << std::endl;
-	drone.signForm(EvilLicense);
-	std::cout << std::endl << "But Tim is sufficiently fancy" << std::endl;
-	Tim.signForm(EvilLicense);
-	std::cout << "But even Tim isn't fancy enough to sign it twice" << std::endl;
-	Tim.signForm(EvilLicense);
+	Bureaucrat SirLancelot("Sir Lancelot", 100);
+	SirLancelot.executeForm(test);
 }

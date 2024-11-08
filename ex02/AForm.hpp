@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:33:54 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 15:19:37 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/08 17:33:05 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class AForm
 		const int			_gradeToSign;
 		const int			_gradeToExecute;
 	public:
-	class GradeTooHighException : std::exception
+	class GradeTooHighException : public std::exception
 	{
 		public:
 			GradeTooHighException() = default;
@@ -31,12 +31,19 @@ class AForm
 			~GradeTooHighException() = default;
 	};
 	
-	class GradeTooLowException : std::exception
+	class GradeTooLowException : public std::exception
 	{
 		public:
 			GradeTooLowException() = default;
 			virtual const char *what() const noexcept;
 			~GradeTooLowException() = default;
+	};
+	class FormNotSignedException : public std::exception
+	{
+		public:
+			FormNotSignedException() = default;
+			virtual const char *what() const noexcept;
+			~FormNotSignedException() = default;
 	};
 		AForm();
 		AForm(std::string name, int toSign, int toExecute);
@@ -47,7 +54,7 @@ class AForm
 		bool getIsSigned() const;
 		const std::string getName() const;
 		void beSigned(Bureaucrat& drone);
-		virtual void execute(Bureaucrat const& executor) = 0;
+		virtual void execute(Bureaucrat const& executor) const = 0;
 		virtual ~AForm();
 };
 

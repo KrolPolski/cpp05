@@ -66,6 +66,11 @@ const char *AForm::GradeTooLowException::what() const noexcept
 	return "Grade Too Low: 150 is the minimum grade for a AForm";	
 }
 
+const char *AForm::FormNotSignedException::what() const noexcept
+{
+	return "Form not signed";
+}
+
 void AForm::beSigned(Bureaucrat& drone)
 {
 	if (drone.getGrade() > _gradeToSign)
