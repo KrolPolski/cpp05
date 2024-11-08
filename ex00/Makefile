@@ -6,13 +6,13 @@
 #    By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 18:10:44 by rboudwin          #+#    #+#              #
-#    Updated: 2024/11/05 17:01:07 by rboudwin         ###   ########.fr        #
+#    Updated: 2024/11/08 13:19:13 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= Bureaucrat
 CFLAGS  := -Wextra -Wall -Werror -std=c++11
-SRCS	:= main.cpp
+SRCS	:= main.cpp Bureaucrat.cpp
 OBJS	:= ${SRCS:.cpp=.o}
 
 all: $(NAME)

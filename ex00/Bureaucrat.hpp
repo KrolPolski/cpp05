@@ -6,11 +6,12 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:01:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/07 17:15:02 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:28:59 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
+#include <iostream>
 
 class Bureaucrat
 {
@@ -22,7 +23,7 @@ public:
 	{
 		public:
 			GradeTooHighException() = default;
-			virtual const char *what() const throw();
+			virtual const char *what() const noexcept;
 			~GradeTooHighException() = default;
 	};
 	
@@ -30,12 +31,12 @@ public:
 	{
 		public:
 			GradeTooLowException() = default;
-			virtual const char *what() const throw();
+			virtual const char *what() const noexcept;
 			~GradeTooLowException() = default;
 	};
 
 	Bureaucrat();
-	Bureaucrat(int grade);
+	Bureaucrat(const std::string& name, int grade); 
 	Bureaucrat(const Bureaucrat& other);
 	Bureaucrat& operator=(const Bureaucrat& other);
 	void IncrementGrade();
@@ -45,4 +46,5 @@ public:
 	const std::string getName() const;
 };
 
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& drone);
 
