@@ -6,13 +6,14 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:01:13 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 18:22:53 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:30:48 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include <ctime>
 
 int main(void)
@@ -87,4 +88,29 @@ int main(void)
 		}	
 	}
 	std::cout << "\n\033[31mPrepare yourself for the tests of the Presidential Pardon System!\033[0m\n" << std::endl;	
+	{
+		Bureaucrat MrPresident("Mr. President", 1);
+		Bureaucrat MrVP("Mr. VP", 10);
+		Bureaucrat drone;
+		PresidentialPardonForm Marvin("Marvin");
+		
+		try
+		{
+			drone.signForm(Marvin);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		try
+		{
+			MrVP.signForm(Marvin);
+			MrVP.executeForm(Marvin);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		MrPresident.executeForm(Marvin);		
+	}
 }

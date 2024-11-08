@@ -6,14 +6,14 @@
 #    By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 18:10:44 by rboudwin          #+#    #+#              #
-#    Updated: 2024/11/08 18:13:08 by rboudwin         ###   ########.fr        #
+#    Updated: 2024/11/08 18:31:01 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= Forms2.0
 CFLAGS  := -Wextra -Wall -Werror -std=c++11
 SRCS	:= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
-		   RobotomyRequestForm.cpp
+		   RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 OBJS	:= ${SRCS:.cpp=.o}
 
 all: $(NAME)
