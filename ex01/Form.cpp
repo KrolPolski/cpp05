@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:54:12 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 14:05:46 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:12:15 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@ Form::Form(const Form& other) : _name(other._name), _gradeToSign(other._gradeToS
 		throw GradeTooHighException();
 }
 
-const int Form::getGradeToSign()
+int Form::getGradeToSign() const
 {
 	return _gradeToSign;
 }
 
-const int Form::getGradeToExecute()
+int Form::getGradeToExecute() const
 {
 	return _gradeToExecute;	
 }
 
-bool Form::getIsSigned()
+bool Form::getIsSigned() const
 {
 	return _isSigned;
 }
 
-const std::string Form::getName()
+const std::string Form::getName() const
 {
 	return _name;
 }
@@ -64,4 +64,20 @@ const char *Form::GradeTooHighException::what() const noexcept
 const char *Form::GradeTooLowException::what() const noexcept
 {
 	return "Grade Too Low: 150 is the minimum grade for a form";	
+}
+
+void Form::beSigned(Bureaucrat& drone)
+{
+	if (drone.getGrade() > _gradeToSign)
+		throw GradeTooLowException();
+	_isSigned = true;
+}
+
+std::ostream& operator<<(std::ostream& out, const Form& someForm)
+{
+	out << "Form Name: " << someForm.getName() << std::endl;
+	out << "Grade to be Signed: " << someForm.getGradeToSign() << std::endl;
+	out << "Grade to be Executed: " << someForm.getGradeToExecute() << std::endl;
+	out << "Signature status: " << std::boolalpha << someForm.getIsSigned() << std::endl;
+ 	return out; 
 }

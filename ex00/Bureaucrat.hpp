@@ -6,10 +6,11 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:01:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 14:02:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:12:06 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #include <string>
 #include <iostream>
 

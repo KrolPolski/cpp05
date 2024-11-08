@@ -6,88 +6,43 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:01:13 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 13:28:13 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:10:59 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(void)
 {
-	try
-	{
-		std::cout << "Testing Default Constructor" << std::endl;
-		Bureaucrat drone;
-		std::cout << drone << std::endl;
-		std::cout << "Testing too high a grade in the constructor, should throw an exception" << std::endl;
-		Bureaucrat MrPower("Mr. Power", 0);
-	}
+	Bureaucrat	Tim("Tim", 10);
+	Bureaucrat	drone;
+	Form		EvilLicense("License for Evil", 11, 11);
+
+	std::cout << EvilLicense << std::endl;
 	
-	catch(const Bureaucrat::GradeTooHighException& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	
-	catch(const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
+	std::cout << "Let's make some invalid forms" << std::endl;
 	
 	try
 	{
-		std::cout << "Testing too low a grade in the constructor, should throw an exception" << std::endl;
-		Bureaucrat Peon("Peon", 151);
+		Form		ImpossibleForm("ImpossibleForm", 0, -1);
 	}
-	
-	catch(const Bureaucrat::GradeTooHighException& e)
+	catch(const Form::GradeTooHighException& e)
 	{
-		std::cerr << e.what() << std::endl;
-	}
-	
-	catch(const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 	try
 	{
-		std::cout << "Testing name and grade constructor" << std::endl;
-		Bureaucrat Bill("Bill", 10);
-		std::cout << Bill << std::endl;
-		std::cout << "Bill needs a promotion" << std::endl;
-		Bill.IncrementGrade();
-		std::cout << Bill << std::endl;
-		std::cout << "Now we increase his grade until we get an exception" << std::endl;
-		for (size_t i = 0; i < 9; i++)
-		{
-			Bill.IncrementGrade();
-			std::cout << Bill << std::endl;
-		}
+		Form		EasyForm("EasyForm", 150, 151);
 	}
-	
-	catch(const Bureaucrat::GradeTooHighException& e)
+	catch(const Form::GradeTooLowException& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
-	
-	catch(const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	try
-	{
-		std::cout << "Let's make a minimum grade bureaucrat and try to decrement him" << std::endl;
-		Bureaucrat drone;
-		std::cout << drone << std::endl;
-		drone.DecrementGrade();
-	}
-	
-	catch(const Bureaucrat::GradeTooHighException& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	
-	catch(const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
+	std::cout << std::endl << "Time to fail at signing a form" << std::endl;
+	drone.signForm(EvilLicense);
+	std::cout << std::endl << "But Tim is sufficiently fancy" << std::endl;
+	Tim.signForm(EvilLicense);
+	std::cout << "But even Tim isn't fancy enough to sign it twice" << std::endl;
+	Tim.signForm(EvilLicense);
 }

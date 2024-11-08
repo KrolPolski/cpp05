@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:03:52 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 13:19:41 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:13:09 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,24 @@ int Bureaucrat::getGrade() const
 const std::string Bureaucrat::getName() const
 {
 	return _name;
+}
+
+void Bureaucrat::signForm(Form& form)
+{
+	if (_grade <= form.getGradeToSign() && !form.getIsSigned())
+	{
+		form.beSigned(*this);
+		std::cout << getName() << " signed " << form.getName() << std::endl;
+	}
+	else if (form.getIsSigned())
+	{
+		std::cout << getName() << " couldn't sign " << form.getName()
+		<< " because the form was already signed." << std::endl;
+	}
+	else
+	{
+		std::cout << getName() << " couldn't sign " << form.getName()
+		<< " because his grade " << getGrade()
+		<< " was lower than the form's requirement of " << form.getGradeToSign() << std::endl;
+	}
 }
