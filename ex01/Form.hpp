@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 17:01:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 14:02:08 by rboudwin         ###   ########.fr       */
+/*   Created: 2024/11/08 13:33:54 by rboudwin          #+#    #+#             */
+/*   Updated: 2024/11/08 14:02:20 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
-#include <iostream>
-
-class Bureaucrat
+class Form
 {
-private:
-	const std::string	_name;
-	int			 		_grade;
-public:
+	private:
+		const std::string	_name;
+		bool				_isSigned {false};
+		const int			_gradeToSign;
+		const int			_gradeToExecute;
+	public:
 	class GradeTooHighException : std::exception
 	{
 		public:
@@ -34,17 +34,13 @@ public:
 			virtual const char *what() const noexcept;
 			~GradeTooLowException() = default;
 	};
-
-	Bureaucrat();
-	Bureaucrat(const std::string& name, int grade); 
-	Bureaucrat(const Bureaucrat& other);
-	Bureaucrat& operator=(const Bureaucrat& other); 
-	void IncrementGrade();
-	void DecrementGrade();
-	~Bureaucrat();
-	int getGrade() const;
-	const std::string getName() const;
+		Form();
+		Form(std::string name, int toSign, int toExecute);
+		Form(const Form& other);
+		Form& operator=(const Form& other) = delete;
+		const int getGradeToSign();
+		const int getGradeToExecute();
+		bool getIsSigned();
+		const std::string getName();
+		~Form();
 };
-
-std::ostream& operator<<(std::ostream& out, const Bureaucrat& drone);
-

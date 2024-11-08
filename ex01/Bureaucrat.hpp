@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:01:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 14:02:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:28:59 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ public:
 	Bureaucrat();
 	Bureaucrat(const std::string& name, int grade); 
 	Bureaucrat(const Bureaucrat& other);
-	Bureaucrat& operator=(const Bureaucrat& other); 
+	Bureaucrat& operator=(const Bureaucrat& other);
 	void IncrementGrade();
 	void DecrementGrade();
 	~Bureaucrat();
