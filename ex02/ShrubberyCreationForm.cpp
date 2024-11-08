@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:26:49 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 17:25:56 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/08 17:58:38 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,36 @@ void ShrubberyCreationForm::execute(Bureaucrat const& executor) const
 		throw FormNotSignedException();
 	if (executor.getGrade() > getGradeToExecute())
 		throw GradeTooLowException();
-	std::cout << executor << "Make a shrubbery. Also cut down the mightiest tree in the forest with a herring." << std::endl;
+	std::ofstream Shrub(_target + "_shrubbery");
+	std::string tree = "                                              .         ;  \n\
+                 .              .              ;%     ;;   \n\
+                   ,           ,                :;%  %;   \n\
+                    :         ;                   :;%;'     .,\n\
+           ,.        %;     %;            ;        %;'    ,;\n\
+             ;       ;%;  %%;        ,     %;    ;%;    ,%'\n\
+              %;       %;%;      ,  ;       %;  ;%;   ,%;' \n\
+               ;%;      %;        ;%;        % ;%;  ,%;'\n\
+                `%;.     ;%;     %;'         `;%%;.%;'\n\
+                 `:;%.    ;%%. %@;        %; ;@%;%'\n\
+                    `:%;.  :;bd%;          %;@%;'\n\
+                      `@%:.  :;%.         ;@@%;'\n\
+                        `@%.  `;@%.      ;@@%;\n\
+                          `@%%. `@%%    ;@@%;\n\
+                            ;@%. :@%%  %@@%;\n\
+                              %@bd%%%bd%%:;\n\
+                                #@%%%%%:;;\n\
+                                %@@%%%::;\n\
+                                %@@@%(o);  . '\n\
+                                %@@@o%;:(.,'\n\
+                            `.. %@@@o%::;\n\
+                               `)@@@o%::;\n\
+                                %@@(o)::;\n\
+                               .%@@@@%::;\n\
+                               ;%@@@@%::;.\n\
+                              ;%@@@@%%:;;;.\n\
+                          ...;%@@@@@%%:;;;;,..\n";
+	Shrub << tree << "You must bring us another shrubbery! Also you must cut down the mightiest tree in the forest with a herring!" << std::endl;
+	Shrub.close();
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery Creation Form", 145, 137)
