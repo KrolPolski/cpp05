@@ -6,10 +6,11 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:21:36 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/11/08 17:56:12 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/11/14 09:49:21 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #include "AForm.hpp"
 #include <fstream>
 #include <iostream>
